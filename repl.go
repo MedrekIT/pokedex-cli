@@ -13,7 +13,7 @@ func cleanInput(test string) []string {
 	return slicedText
 }
 
-func replInit() {
+func replInit(conf *config) {
 	scanner := bufio.NewScanner(os.Stdin)
 
 	for {
@@ -24,9 +24,9 @@ func replInit() {
 		if len(input) > 0 {
 			allCommands := getCommands()
 			if command, ok := allCommands[input[0]]; ok {
-				err := command.callback()
+				err := command.callback(conf)
 				if err != nil {
-					fmt.Errorf("%w", err)
+					fmt.Printf("Error: %v\n", err)
 				}
 			} else {
 				fmt.Println("Unknown command")
