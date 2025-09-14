@@ -5,6 +5,7 @@ import (
 	"strings"
 	"bufio"
 	"os"
+	"github.com/MedrekIT/pokedex/internal/pokeapi"
 )
 
 
@@ -13,7 +14,7 @@ func cleanInput(test string) []string {
 	return slicedText
 }
 
-func replInit(conf *config) {
+func replInit(conf *pokeapi.Config) {
 	scanner := bufio.NewScanner(os.Stdin)
 
 	for {
@@ -24,7 +25,7 @@ func replInit(conf *config) {
 		if len(input) > 0 {
 			allCommands := getCommands()
 			if command, ok := allCommands[input[0]]; ok {
-				err := command.callback(conf)
+				err := command.callback(conf, input[1:])
 				if err != nil {
 					fmt.Printf("Error: %v\n", err)
 				}

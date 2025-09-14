@@ -31,17 +31,17 @@ func TestCleanInput(t *testing.T) {
 	}
 
 	for _, c := range cases {
-	actual := cleanInput(c.input)
-	if len(actual) != len(c.expected) {
-		t.Errorf("len(actual) = %v != len(expected) = %v - Output sizes don't match", len(actual), len(c.expected))
-	}
-	for i := range actual {
-		word := actual[i]
-		expectedWord := c.expected[i]
+		actual := cleanInput(c.input)
+		if len(actual) != len(c.expected) {
+			t.Errorf("len(actual) = %v != len(expected) = %v - Output sizes don't match", len(actual), len(c.expected))
+		}
+		for i := range actual {
+			word := actual[i]
+			expectedWord := c.expected[i]
 
-		if word != expectedWord {
-			t.Errorf("word = %v != expectedWord = %v - Output contents don't match", word, expectedWord)
+			if word != expectedWord {
+				t.Errorf("word = %v != expectedWord = %v - Output contents don't match", word, expectedWord)
+			}
 		}
 	}
-}
 }
