@@ -39,7 +39,7 @@ func GetLocations(url string, conf *Config) (Locations, error) {
 			return Locations{}, fmt.Errorf("error decoding response body - %w", err)
 		}
 
-		fmt.Println("(loaded from cache)")
+		fmt.Println("(data loaded from cache)")
 		return data, nil
 	}
 
@@ -73,7 +73,7 @@ func GetPokemons(url string, conf *Config) (Area, error) {
 			return Area{}, fmt.Errorf("error decoding response body - %w", err)
 		}
 
-		fmt.Println("(loaded from cache)")
+		fmt.Println("(data loaded from cache)")
 		return data, nil
 	}
 
@@ -92,6 +92,40 @@ func GetPokemons(url string, conf *Config) (Area, error) {
 	var data Area
 	if err := json.Unmarshal(dataBytes, &data); err != nil {
 		return Area{}, fmt.Errorf("error decoding response body - %w", err)
+	}
+
+
+	return data, nil
+}
+
+func GetPokemon(url string, conf *Config) (Pokemon, error) {
+	fullURL := urlToAPI + "pokemon/" + url
+
+	if dataBytes, ok := conf.Cache.Get(fullURL); ok {
+		var data Pokemon
+		if err := json.Unmarshal(dataBytes, &data); err != nil {
+			return Pokemon{}, fmt.Errorf("error decoding response body - %w", err)
+		}
+
+		fmt.Println("(data loaded from cache)")
+		return data, nil
+	}
+
+	res, err := getRequest(fullURL)
+	if err != nil {
+		return Pokemon{}, err
+	}
+	defer res.Body.Close()
+
+	dataBytes, err := io.ReadAll(res.Body)
+	if err != nil {
+		fmt.Errorf("error reading data from body: %w", err)
+	}
+	conf.Cache.Add(fullURL, dataBytes)
+
+	var data Pokemon
+	if err := json.Unmarshal(dataBytes, &data); err != nil {
+		return Pokemon{}, fmt.Errorf("error decoding response body - %w", err)
 	}
 
 

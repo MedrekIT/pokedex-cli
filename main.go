@@ -9,6 +9,7 @@ import (
 func main() {
 	conf := &pokeapi.Config{
 		Cache: pokecache.NewCache(5 * time.Minute),
+		Pokedex: make(map[string]pokeapi.Pokemon),
 	}
 	replInit(conf)
 }
