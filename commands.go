@@ -4,7 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"os"
-	"github.com/MedrekIT/pokedex/internal/pokeapi"
+	"github.com/MedrekIT/pokedex-cli/internal/pokeapi"
 	"math/rand"
 )
 

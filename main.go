@@ -2,8 +2,8 @@ package main
 
 import (
 	"time"
-	"github.com/MedrekIT/pokedex/internal/pokecache"
-	"github.com/MedrekIT/pokedex/internal/pokeapi"
+	"github.com/MedrekIT/pokedex-cli/internal/pokecache"
+	"github.com/MedrekIT/pokedex-cli/internal/pokeapi"
 )
 
 func main() {

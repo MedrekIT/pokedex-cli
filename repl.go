@@ -5,7 +5,7 @@ import (
 	"strings"
 	"bufio"
 	"os"
-	"github.com/MedrekIT/pokedex/internal/pokeapi"
+	"github.com/MedrekIT/pokedex-cli/internal/pokeapi"
 )
 
 
@@ -30,7 +30,7 @@ func replInit(conf *pokeapi.Config) {
 					fmt.Printf("Error: %v\n", err)
 				}
 			} else {
-				fmt.Println("Unknown command")
+				fmt.Printf("Error: unknown command\n")
 			}
 		}
 	}

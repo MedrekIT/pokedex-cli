@@ -1,7 +1,7 @@
 package pokeapi
 
 import (
-	"github.com/MedrekIT/pokedex/internal/pokecache"
+	"github.com/MedrekIT/pokedex-cli/internal/pokecache"
 )
 
 type Config struct {
