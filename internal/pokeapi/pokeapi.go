@@ -51,7 +51,7 @@ func GetLocations(url string, conf *Config) (Locations, error) {
 
 	dataBytes, err := io.ReadAll(res.Body)
 	if err != nil {
-		fmt.Errorf("error reading data from body: %w", err)
+		return Locations{}, fmt.Errorf("error reading data from body: %w", err)
 	}
 	conf.Cache.Add(url, dataBytes)
 
@@ -85,7 +85,7 @@ func GetPokemons(url string, conf *Config) (Area, error) {
 
 	dataBytes, err := io.ReadAll(res.Body)
 	if err != nil {
-		fmt.Errorf("error reading data from body: %w", err)
+		return Area{}, fmt.Errorf("error reading data from body: %w", err)
 	}
 	conf.Cache.Add(fullURL, dataBytes)
 
@@ -119,7 +119,7 @@ func GetPokemon(url string, conf *Config) (Pokemon, error) {
 
 	dataBytes, err := io.ReadAll(res.Body)
 	if err != nil {
-		fmt.Errorf("error reading data from body: %w", err)
+		return Pokemon{}, fmt.Errorf("error reading data from body: %w", err)
 	}
 	conf.Cache.Add(fullURL, dataBytes)
 
